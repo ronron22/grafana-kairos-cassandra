@@ -54,8 +54,6 @@ exemple
 
 #### définir l'adresse d'écoute
 
-L'interface d'écoute
-
 ```bash
 listen_address: 10.0.145.202
 ```
