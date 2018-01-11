@@ -44,29 +44,17 @@ cluster_name: 'Kairos cluster'
 
 #### déclarer les seeds provider
 
-avec la commande nodetool **status**
-
-```bash
-nodetool status
-Datacenter: datacenter1
-=======================
-Status=Up/Down
-|/ State=Normal/Leaving/Joining/Moving
---  Address       Load       Tokens       Owns (effective)  Host ID                               Rack
-UN  10.0.145.201  314.14 KiB  256          34.2%             41e091d4-5df3-421c-b7b2-c85919588109  rack1
-UN  10.0.145.202  196.86 KiB  256          32.6%             0674c1dd-4dfe-4539-a7c4-88fea05cfe1e  rack1
-UN  10.0.145.203  326.17 KiB  256          33.3%             2528cbd6-e5c9-401c-8832-aa1d10b1fcbe  rack1
-```
-Dans la section **seed_provider**  puis **class_name** et enfin **parameters**, déclarer les seeds (les noeuds)
+Dans la section **seed_provider**  puis **class_name** et enfin **parameters**, déclarer les **seeds** (les noeuds)
 
 exemple
+
 ```bash
 - seeds: "10.0.145.202,10.0.145.201,10.0.145.203"
 ```
 
 #### définir l'adresse d'écoute
 
-L'interface "externe"
+L'interface d'écoute
 
 ```bash
 listen_address: 10.0.145.202
