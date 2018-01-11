@@ -1,4 +1,4 @@
-# Grafana et kairosdb avec cluster cassandra en backend
+# Grafana et kairosdb avec cluster cassandra en backend et collectd pour l'alimentation
 
 L'idée est d'utiliser Cassandra pour y stocker des quantités énorme de données, car Prometheus et Influxdb ne semblent pas proposer les fonctions de clustering dans leur version community.
 
