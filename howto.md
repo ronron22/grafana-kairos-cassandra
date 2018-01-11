@@ -212,7 +212,7 @@ Les métriques peuvent être récupérées du dashboard Kairos
 
 Consulter les logs ici **/var/log/grafana/**
 
-## Collectd
+## Collectd
 
 L'alimentation des datas
 
