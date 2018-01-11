@@ -1,6 +1,6 @@
 # Grafana et kairosdb avec cluster cassandra en backend
 
-L'idée est d'utiliser Cassandra pour y stocker des quantités énorme de données, Prometheus et Influxdb ne gérant pas les cluster dans leur version community.
+L'idée est d'utiliser Cassandra pour y stocker des quantités énorme de données, car Prometheus et Influxdb ne semblent pas proposer les fonctions de clustering dans leur version community.
 
 4 sections :
 
@@ -68,6 +68,12 @@ rpc_address: 10.0.145.202
 rpc_port: 9160
 ```
 
+relancer
+
+```bash
+service cassandra restart
+```
+
 ### vérification et troubleshooting
 
 Consulter les logs ici **/var/log/cassandra/**
@@ -92,7 +98,7 @@ UN  10.0.145.203  326.17 KiB  256          33.3%             2528cbd6-e5c9-401c-
 
 * une machines en Debian Stretch
 
-(cetteb machine hébergera Kairosdb et Grafana)
+(cette machine hébergera Kairosdb et Grafana)
 
 ### installation 
 
@@ -126,11 +132,17 @@ kairosdb.datastore.cassandra.use_ssl=false
 
 Pensez à commenter le **datastore h2**
 
+relancer
+
+```bash
+service kairosdb restart
+```
+
 ### vérification
 
-#### vérifier sur cassandra, que le keyspace kairosdb est créé
+#### sur cassandra, vérifiez que le keyspace kairosdb est créé
 
-retenez le kairosdb.datastore.cassandra.keyspace name
+retenez le nom du **kairosdb.datastore.cassandra.keyspace** 
 
 ```bash
 root@cassandra2:~ # cqlsh 10.0.145.202 9042                                                                            
@@ -155,7 +167,7 @@ Les métriques sont présentées au format **Graphite**
 
 Consulter les logs ici **/opt/kairosdb/log/**
 
-# Grafana
+## Grafana
 
 Installons **grafana** sur le même serveur que **kairosdb**
 
@@ -172,6 +184,12 @@ deb https://packagecloud.io/grafana/stable/debian/ stretch main
 
 ```bash
 grafana-cli plugins install grafana-kairosdb-datasource 
+```
+
+relancer
+
+```bash
+service grafana restart
 ```
 
 ### Configuration 
@@ -194,7 +212,7 @@ Les métriques peuvent être récupérées du dashboard Kairos
 
 Consulter les logs ici **/var/log/grafana/**
 
-# Collectd
+## Collectd
 
 L'alimentation des datas
 
@@ -227,9 +245,19 @@ cp -v  kairosdb.conf /etc/collectd/collectd.conf.d/
 Adaptez la configuration (adresse IP de KairosDBURI et ModulePath "/usr/lib/collectd/") 
 
 ```bash
-mv  kairosdb.conf /etc/collectd/collectd.conf.d/
+mv -v  kairosdb.conf /etc/collectd/collectd.conf.d/
+```
+
+relancer
+
+```bash
+service grafana restart
 ```
 
 ### vérification et troubleshooting
 
 Consulter les logs ici **/var/log/syslog**
+
+## Si cela ne marche pas
+
+Contactez-moi ou cherchez
