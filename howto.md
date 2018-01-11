@@ -242,11 +242,8 @@ Copie de la configuration
 cp -v  kairosdb.conf /etc/collectd/collectd.conf.d/
 ```
 
-Adaptez la configuration (adresse IP de KairosDBURI et ModulePath "/usr/lib/collectd/") 
+puis adaptez la configuration (adresse IP de KairosDBURI et ModulePath "/usr/lib/collectd/") 
 
-```bash
-mv -v  kairosdb.conf /etc/collectd/collectd.conf.d/
-```
 
 relancer
 
