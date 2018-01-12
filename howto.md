@@ -214,7 +214,7 @@ Consulter les logs ici **/var/log/grafana/**
 
 ## Collectd
 
-L'alimentation des datas
+L'alimentation en datas
 
 ### installation
 
